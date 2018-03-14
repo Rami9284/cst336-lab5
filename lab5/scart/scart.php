@@ -53,12 +53,11 @@
                     </div>
                 </nav>
                 <br /> <br /> <br />
-                <h2>Products Page</h2>
+                <h2>Shopping Cart</h2>
                 <!-- Cart Items -->
                 <?php
                   if(isset($_SESSION['cart'])) {
                       displayCart();
-                      
                       
                   }
                   else{

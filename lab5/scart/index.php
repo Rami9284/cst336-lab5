@@ -1,5 +1,6 @@
 <?php
  include 'functions.php';
+ include 'database.php';
  session_start();
 ?>
 <!DOCTYPE html>
@@ -34,14 +35,88 @@
             <br /> <br /> <br />
             
             <!-- Search Form -->
+            <!--<form enctype="text/plain">-->
+            <!--    Product:<input type="text" name="productName"/>-->
+            <!--    <br><br>-->
+            <!--    Category: -->
+            <!--    <select name= "categoryName">-->
+            <!--            <?php echo getCategoriesHTML();?>-->
+            <!--    </select>-->
+            <!--    <br><br>-->
+                <!--<div class="form-group">-->
+                <!--    <label for="pName">Product Name</label>-->
+                <!--    <input type="text" class="form-control" name="query" id="pName" placeholder="Name">-->
+                <!--</div>-->
+            <!--    Price: From <input type="text" name="lowPrice"/> To: <input type="text" name="highPrice"/>-->
+            <!--    <br><br>-->
+            <!--    Order Results By :-->
+            <!--   <input type="radio" id="byName" name = "resultOption" value = "Product Name"/>-->
+            <!--   <label for="byName">Product Name</label>-->
+            <!--   <input type="radio" id="byPrice" name = "resultOption" value ="Price"/>-->
+            <!--   <label for="byPrice">Price</label>-->
+            <!--    <br><br>-->
+            <!--    <input type="checkbox" id="display" name="productPictures">-->
+            <!--    <label for="display">Display Product Pictures</label>-->
+            <!--    <br><br>-->
+            <!--    <input type="submit" value="Search" class="btn btn-default">-->
+            <!--    <br /><br />-->
+            <!--</form>-->
+            
             <form enctype="text/plain">
-                <div class="form-group">
-                    <label for="pName">Product Name</label>
-                    <input type="text" class="form-control" name="query" id="pName" placeholder="Name">
+                <div class="form-group1">
+                    <label for="pName1">Product Name</label>
+                    <input type="text" class="form-control1" name="query" id="pName" placeholder="Name">
+                    <br><br>
+                    Category: 
+                    <select  name="category">
+                        <?php echo getCategoriesHTML(); ?>
+                    </select>
+                    <br/><br>
+                    Price:  
+                    From: <input type="text" name="price-from" />
+                    To: <input type="text" name="price-to" />
+                    <br/><br>
+                    Order Results by: 
+                    <input type="radio" name="ordering" value="product"> Product 
+                    <input type="radio" name="ordering" value="price"> Price
+                    <br/><br>
+                    <input name="show-images" type="checkbox"> Display images
+                    <br/><br>
                 </div>
-                <input type="submit" value="Submit" class="btn btn-default">
+                <input type="submit" name = "search-submitted" value="Submit" class="btn btn-default">
                 <br /><br />
             </form>
+
+
+            
+            <?php
+                 if (isset($_GET["category"]) && !empty($_GET["category"])) {
+                    $category = $_GET["category"]; 
+                }
+                
+                if (isset($_GET["price-from"]) && !empty($_GET["price-from"])) {
+                    $priceFrom =  $_GET["price-from"]; 
+                }
+                
+                if (isset($_GET["price-to"]) && !empty($_GET["price-to"])) {
+                    $priceTo = $_GET["price-to"];
+                }
+                
+                if (isset($_GET["ordering"]) && !empty($_GET["ordering"])) {
+                    $ordering = $_GET["ordering"];
+                }
+                
+                if (isset($_GET["show-images"]) && !empty($_GET["show-images"])) {
+                    $showImages = $_GET["show-images"];
+                }
+                
+                if(isset($_GET['search-submitted'])){
+                    //form was submitted
+                    //$items = getProducts($_GET['$query']);
+                    $items = getMatchingItems($query, $category, $priceFrom, $priceTo, $ordering, $showImages);
+                }
+
+            ?>
             
             <!-- Display Search Results -->
             <br/> <br/> <br/>
@@ -77,16 +152,16 @@
                 }
                 
                 if(isset($_GET['query'])){
-                    include 'wmapi.php';
-                    $items = getProducts($_GET['query']);
+                    //include 'wmapi.php';
+                    //$items = getProducts($_GET['query']);
+                    //insertItemsIntoDB($items);
                     
+                    $items = getMatchingItems($query, $category, $priceFrom, $priceTo, $ordering, $showImages);
                 }
             
-                    
-            ?>
-            
-            <?php
                 displayResults();
+
+                    
             ?>
             
         </div>

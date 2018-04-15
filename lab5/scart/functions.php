@@ -6,12 +6,16 @@
     function displayResults(){
         global $items;
         
+         if ($itemImage)
+                echo "<input type='hidden' name='itemImage' value='$itemImage'>"; 
+            
+
         if (isset($items)) {
             echo "<table class='table'>";
             foreach($items as $item){
                 $itemName = $item['name'];
-                $itemPrice = $item['salePrice'];
-                $itemImage = $item['thumbnailImage'];
+                $itemPrice = $item['price'];
+                $itemImage = $item['image_url'];
                 $itemId = $item['itemId'];
                 
                 echo '<tr>';

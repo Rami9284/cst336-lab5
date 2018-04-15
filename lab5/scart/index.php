@@ -34,33 +34,6 @@
             </nav>
             <br /> <br /> <br />
             
-            <!-- Search Form -->
-            <!--<form enctype="text/plain">-->
-            <!--    Product:<input type="text" name="productName"/>-->
-            <!--    <br><br>-->
-            <!--    Category: -->
-            <!--    <select name= "categoryName">-->
-            <!--            <?php echo getCategoriesHTML();?>-->
-            <!--    </select>-->
-            <!--    <br><br>-->
-                <!--<div class="form-group">-->
-                <!--    <label for="pName">Product Name</label>-->
-                <!--    <input type="text" class="form-control" name="query" id="pName" placeholder="Name">-->
-                <!--</div>-->
-            <!--    Price: From <input type="text" name="lowPrice"/> To: <input type="text" name="highPrice"/>-->
-            <!--    <br><br>-->
-            <!--    Order Results By :-->
-            <!--   <input type="radio" id="byName" name = "resultOption" value = "Product Name"/>-->
-            <!--   <label for="byName">Product Name</label>-->
-            <!--   <input type="radio" id="byPrice" name = "resultOption" value ="Price"/>-->
-            <!--   <label for="byPrice">Price</label>-->
-            <!--    <br><br>-->
-            <!--    <input type="checkbox" id="display" name="productPictures">-->
-            <!--    <label for="display">Display Product Pictures</label>-->
-            <!--    <br><br>-->
-            <!--    <input type="submit" value="Search" class="btn btn-default">-->
-            <!--    <br /><br />-->
-            <!--</form>-->
             
             <form enctype="text/plain">
                 <div class="form-group1">
